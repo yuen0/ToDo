@@ -1,0 +1,41 @@
+body {
+	width: 100%;
+	margin: 0 auto;
+	display: flex;
+	justify-content: center;
+	background-color: rgb(255, 225, 176);
+
+	#container {
+		width: max-content;
+		width: 50%;
+		display: flex;
+		height: max-content;
+		align-items: center;
+		flex-direction: column;
+		background-color: rgba(44, 44, 44, 0.269);
+
+		h1 {
+			color: white;
+			font-family: "PT Sans", sans-serif;
+			font-size: 3em;
+			text-align: center;
+		}
+
+		h2 {
+			color: rgb(100, 93, 59);
+			font-family: "PT Sans", sans-serif;
+			font-size: 2em;
+		}
+
+		#toDoList {
+			color: white;
+			padding: 0;
+			li {
+				font-size: 1.3em;
+				list-style: none;
+				text-align: start;
+				font-family: "PT Sans", sans-serif;
+			}
+		}
+	}
+}
