@@ -1,12 +1,18 @@
-const listItem = document.querySelectorAll("#toDoList li");
-const completedList = document.querySelector("#completedList");
-const toDoList = document.querySelector("#toDoList");
-const completedLi = document.querySelectorAll("#completedList li");
+const listItems = document.querySelectorAll("li");
+const input = document.querySelector("#content");
+const form = document.querySelector("#todo-form");
+const ul = document.querySelector("#u-list");
 
-
-//removes item from To Do List and adds it to the completed list
-for (let item of listItem){
-    item.addEventListener("click", () =>{
-        completedList.appendChild(item);
-    })
+for (let item of listItems) {
+	item.addEventListener("click", () => {
+		item.remove();
+	});
 }
+
+form.addEventListener("submit", (e) => {
+	e.preventDefault();
+	const newTodo = document.createElement("li");
+	newTodo.innerText = "";
+	newTodo.innerText = input.value.toUpperCase();
+	ul.appendChild(newTodo);
+});

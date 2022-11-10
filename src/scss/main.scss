@@ -1,52 +1,90 @@
-body {
-	width: 100%;
-	margin: 0 auto;
-	display: flex;
-	justify-content: center;
-	background-color: rgb(255, 225, 176);
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	//font-family: ;
 
-	#container {
-		width: max-content;
-		width: 50%;
-		display: flex;
-		height: max-content;
-		align-items: center;
-		flex-direction: column;
-		background-color: rgba(44, 44, 44, 0.269);
+	body {
+		background: rgb(234, 234, 234);
+		color: darkslategray;
 
-		h1 {
-			color: white;
-			font-family: "PT Sans", sans-serif;
-			font-size: 3em;
-			text-align: center;
-		}
+		section {
+			margin-top: 2rem;
+			margin-bottom: 2rem;
+			padding-left: 1.5rem;
+			padding-right: 1.5rem;
 
-		h2 {
-			color: rgb(100, 93, 59);
-			font-family: "PT Sans", sans-serif;
-			font-size: 2em;
-		}
-
-		#toDoList {
-			color: white;
-			padding: 0;
-			li {
-				font-size: 1.3em;
-				list-style: none;
-				text-align: start;
-				font-family: "PT Sans", sans-serif;
+			.header__title {
+				color: darkslategray;
+				text-align: center;
+				font-size: 1.5rem;
+				font-weight: 700;
+				margin-bottom: 3.5rem;
 			}
-		}
 
-		#completedList {
-			color: white;
-			padding: 0;
-			li{
-				font-size: 1.3em;
-				list-style: none;
-				text-align: start;
-				font-family: "PT Sans", sans-serif;
-				text-decoration: line-through;
+			.header__desc {
+				color: gray;
+				font-size: 1rem;
+				font-weight: 700;
+				margin-bottom: 0.5rem;
+			}
+
+			input:not([type="checkbox"]) {
+				border: none;
+				outline: none;
+				cursor: initial;
+			}
+
+			.header__form input[type="text"] {
+				display: block;
+				width: 100%;
+				font-size: 1.1rem;
+				padding: 1rem 1.5rem;
+				color: darkslategray;
+				background-color: white;
+				border-radius: 0.5rem;
+				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+				margin-bottom: 1.5rem;
+			}
+
+			.header__form input[type="submit"] {
+				display: block;
+				width: 100%;
+				font-size: 1.1rem;
+				padding: 1rem 1.5rem;
+				color: white;
+				background-color: rgb(235, 100, 10);
+				border-radius: 0.5rem;
+				box-shadow: 0 1px 3px rgb(217, 107, 24);
+				cursor: pointer;
+				transition: 0.2s ease-in-out;
+			}
+			.header__form input[type="submit"]:hover {
+				opacity: 0.75;
+			}
+
+			.todo__list {
+				margin: 1rem 0;
+
+				.todo__content li {
+					display: flex;
+					align-items: center;
+					background-color: white;
+					padding: 1rem;
+					border-radius: 0.5rem;
+					box-shadow: rgba(0, 0, 0, 0.1);
+					margin-bottom: 1rem;
+					color: gray;
+					font-size: 1rem;
+					font-weight: 700;
+					margin-bottom: 0.5rem;
+					transition: 0.2s ease-in-out;
+				}
+
+				.todo__content li:hover {
+					background-color: rgb(255, 93, 93);
+					color: white;
+				}
 			}
 		}
 	}
