@@ -14,7 +14,6 @@ function addItem(item) {
 		const todo = {
 			name: item,
 			id: Date.now(),
-			completed: false,
 		};
 
 		todoList.push(todo);
@@ -29,15 +28,9 @@ function displayItems(todoList) {
 	list.innerHTML = "";
 
 	for (let i of todoList) {
-		const checked = i.completed ? "checked" : null;
-
 		const li = document.createElement("li");
 		li.setAttribute("class", "item");
 		li.setAttribute("data-key", i.id);
-
-		if (i.completed === true) {
-			li.classList.add("checked");
-		}
 
 		li.innerHTML = `${i.name}<button class="delete-button">X</button>`;
 
