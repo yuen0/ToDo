@@ -1,38 +1,75 @@
 const form = document.querySelector("#todo-form");
-// const input = document.querySelector("#content");
-// const ul = document.querySelector("#u-list");
+const formInput = document.querySelector("#content");
+const list = document.querySelector("#u-list");
 
-window.addEventListener("load", () => {
-	newItems = JSON.parse(localStorage.getItem("newItems")) || [];
-	const input = document.querySelector("#content");
-	const form = document.querySelector("#todo-form");
-	const ul = document.querySelector("#u-list");
+let todoList = [];
 
-	form.addEventListener("submit", (e) => {
-		e.preventDefault();
+form.addEventListener("submit", (e) => {
+	e.preventDefault();
+	addItem(formInput.value);
+});
 
-		todo = {
-			content: e.target.elements.content.value,
+function addItem(item) {
+	if (item !== "") {
+		const todo = {
+			name: item,
+			id: Date.now(),
+			completed: false,
 		};
 
-		newItems.push(todo);
-		localStorage.setItem("newItems", JSON.stringify(newItems));
+		todoList.push(todo);
+		addLS(todoList);
+		formInput.value = "";
+	} else {
+		alert("Please add a valid todo");
+	}
+}
 
-		const newTodo = document.createElement("li");
-		newTodo.innerText = input.value.toUpperCase();
-		ul.appendChild(newTodo);
+function displayItems(todoList) {
+	list.innerHTML = "";
 
-		e.target.reset();
+	for (let i of todoList) {
+		const checked = i.completed ? "checked" : null;
+
+		const li = document.createElement("li");
+		li.setAttribute("class", "item");
+		li.setAttribute("data-key", i.id);
+
+		if (i.completed === true) {
+			li.classList.add("checked");
+		}
+
+		li.innerHTML = `${i.name}<button class="delete-button">X</button>`;
+
+		list.append(li);
+	}
+}
+
+function addLS(todoList) {
+	localStorage.setItem("todos", JSON.stringify(todoList));
+	displayItems(todoList);
+}
+
+function getLS() {
+	const storage = localStorage.getItem("todos");
+
+	if (storage) {
+		todoList = JSON.parse(storage);
+		displayItems(todoList);
+	}
+}
+
+function deleteItem(id) {
+	todoList = todoList.filter((i) => {
+		return i.id != id;
 	});
-	ul.addEventListener("click", (e) => {
-		newItems = newItems.filter((item) => item !== e.target);
-		localStorage.setItem("newItems", JSON.stringify(newItems));
-		e.target.remove();
-	});
+	addLS(todoList);
+}
 
-	for (item of newItems) {
-		const newTodo = document.createElement("li");
-		newTodo.innerText = item.content.toUpperCase();
-		ul.appendChild(newTodo);
+getLS();
+
+list.addEventListener("click", (e) => {
+	if (e.target.classList.contains("delete-button")) {
+		deleteItem(e.target.parentElement.getAttribute("data-key"));
 	}
 });
